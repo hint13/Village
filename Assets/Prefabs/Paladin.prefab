@@ -283,10 +283,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8052355707423328794}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 2
-  m_Drag: 0.6
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0.6
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -340,15 +340,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152aab199e8caba47b0984d9e103e3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  slashDamage: 20
-  kickDamage: 15
-  moveSpeedForward: 3.5
-  moveSpeedBackward: 2.3
-  strafeSpeed: 1
-  jumpForce: 5
-  slashTime: 1.4
-  kickTime: 1.1
-  jumpTime: 0.9
-  hitTime: 0.9
-  deadTime: 2.2
+  stat: {fileID: 11400000, guid: c50909654fa286041ba5a57f71174cfc, type: 2}

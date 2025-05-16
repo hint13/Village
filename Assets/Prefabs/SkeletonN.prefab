@@ -365,4 +365,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e8f1955d966ea4ea44d2d617708484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 11400000, guid: 6dc722816bc86ac45a610fcc381c22c0, type: 2}
+  skeleton: {fileID: 11400000, guid: 6dc722816bc86ac45a610fcc381c22c0, type: 2}
+  attackDistance: 1

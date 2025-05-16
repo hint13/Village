@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "hint13/Skeleton/New Prefab", fileName = "Skeleton")]
-public class SkeletonPrefabs : ScriptableObject
+[CreateAssetMenu(menuName = "Game/Skeleton Info", fileName = "Skeleton")]
+public class SkeletonInfo: ScriptableObject
 {
     public SkeletonType type;
     public GameObject prefab;
@@ -15,6 +15,7 @@ public class SkeletonPrefabs : ScriptableObject
     public float spawnInterval;
 
     public float agroRadius;
+    public float animationSpeed;
 
     public override string ToString()
     {

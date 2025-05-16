@@ -17,6 +17,7 @@ MonoBehaviour:
   HP: 100
   Speed: 2
   countAttacks: 1
-  spawnCount: 10
+  spawnCount: 1
   spawnInterval: 3
   agroRadius: 3
+  animationSpeed: 1

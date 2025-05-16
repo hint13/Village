@@ -15,8 +15,9 @@ MonoBehaviour:
   type: 1
   prefab: {fileID: 8858051749441068820, guid: b8b460fd6ca9221428048204dcaa992f, type: 3}
   HP: 200
-  Speed: 1.3
+  Speed: 1.2
   countAttacks: 2
-  spawnCount: 3
+  spawnCount: 1
   spawnInterval: 5
   agroRadius: 5
+  animationSpeed: 0.6
