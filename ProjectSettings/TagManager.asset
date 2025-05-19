@@ -6,15 +6,18 @@ TagManager:
   tags:
   - Shadow
   - Collide
+  - Enemy
+  - EnemyWeapon
+  - Weapon
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
-  - 
+  - Player
   - TempCast
   - Walkable
   - 

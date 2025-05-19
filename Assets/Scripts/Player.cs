@@ -13,11 +13,13 @@ public class Player : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     private bool isAttack = false;
+    private SpawnSkeleton spawner;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+        spawner = FindFirstObjectByType<SpawnSkeleton>();
     }
 
     private void FixedUpdate()
@@ -49,12 +51,19 @@ public class Player : MonoBehaviour
 
     private void Attack() 
     {
+        Vector3 target = Vector3.zero;
         if (Input.GetMouseButtonDown(0))
         {
+            target = GetAttackPoint();
             StartCoroutine(SlashAttack());
         } else if (Input.GetMouseButtonDown(1))
         {
+            target = GetAttackPoint();
             StartCoroutine(KickAttack());
+        }
+        if (!target.Equals(Vector3.zero))
+        {
+            transform.rotation.SetLookRotation(target);
         }
     }
 
@@ -74,4 +83,20 @@ public class Player : MonoBehaviour
         isAttack = false;
     }
 
+    private Vector3 GetAttackPoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        int layerMask = LayerMask.GetMask("Enemy");
+        RaycastHit hit;
+        // Проверяем, пересекается ли луч с чем-либо на сцене  
+        if (Physics.Raycast(ray, out hit, layerMask))
+        {
+            // Если пересечение есть, получаем информацию о нём  
+            Transform objectHit = hit.transform;
+            Debug.Log("Попал в объект: " + objectHit.name);
+            return objectHit.position;
+        }
+        return Vector3.zero;
+    }
 }

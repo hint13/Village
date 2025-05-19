@@ -19,6 +19,8 @@ public class SpawnSkeleton : MonoBehaviour
     private bool _isSpawning = false;
     private int currentUnit = 0;
 
+    private List<GameObject> skeletons = new();
+
     // For debug
     private Vector3[] points;
 
@@ -37,6 +39,7 @@ public class SpawnSkeleton : MonoBehaviour
             new Vector3(pos.x+spawnAreaWidth, 0.01f, pos.z+spawnAreaHeigh),
             new Vector3(pos.x-spawnAreaWidth, 0.01f, pos.z+spawnAreaHeigh)
         }; 
+        skeletons.Clear();
     }
 
     private void FixedUpdate()
@@ -71,7 +74,10 @@ public class SpawnSkeleton : MonoBehaviour
         {
             currentUnit++;
         }
+        
         var s = Instantiate(skeleton.prefab, GetSpawnPoint(), transform.rotation.normalized);
+        s.layer = LayerMask.NameToLayer("Enemy");
+        skeletons.Add(s);
 
         yield return new WaitForSeconds(1.0f);
         _isSpawning = false;
@@ -88,5 +94,10 @@ public class SpawnSkeleton : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLineStrip(points, true);
+    }
+
+    public List<GameObject> GetSkeletonsList()
+    {
+        return skeletons;
     }
 }
