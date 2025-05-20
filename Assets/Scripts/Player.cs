@@ -11,23 +11,19 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     private Vector3 moveDirection = Vector3.zero;
+    private float rotation = 0f;
 
     private bool isAttack = false;
     private SpawnSkeleton spawner;
+
+    private LayerMask enemyLayer;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
         spawner = FindFirstObjectByType<SpawnSkeleton>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (isAttack)
-            return;
-        Vector3 mouse = Input.mousePosition;
-        //Debug.Log("Mouse position: " + mouse);
+        enemyLayer = LayerMask.GetMask("Enemy");
     }
 
     void Update()
@@ -35,6 +31,7 @@ public class Player : MonoBehaviour
         if (!isAttack)
         {
             Move();
+            Rotate();
             Attack();
         }
     }
@@ -43,27 +40,44 @@ public class Player : MonoBehaviour
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        moveDirection = new Vector3(moveX * stat.strafeSpeed, 0, moveZ > 0 ? moveZ * stat.moveSpeedForward : moveZ * stat.moveSpeedBackward);
+        moveDirection = moveX * stat.strafeSpeed * transform.right + (moveZ > 0 ? moveZ * stat.moveSpeedForward : moveZ * stat.moveSpeedBackward) * transform.forward;
         controller.Move(moveDirection * Time.deltaTime);
         animator.SetFloat("Speed", moveZ);
         animator.SetFloat("Strafe", moveX);
     }
 
+    private void Rotate()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            rotation += -stat.rotateSpeed * Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            rotation += stat.rotateSpeed * Time.deltaTime;
+        }
+        if (Mathf.Abs(rotation) > 0)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, rotation, 0f), 15f);
+        }
+    }
+
     private void Attack() 
     {
-        Vector3 target = Vector3.zero;
+        Transform target = null;
         if (Input.GetMouseButtonDown(0))
         {
-            target = GetAttackPoint();
+            target = GetAttackObject();
             StartCoroutine(SlashAttack());
         } else if (Input.GetMouseButtonDown(1))
         {
-            target = GetAttackPoint();
+            target = GetAttackObject();
             StartCoroutine(KickAttack());
         }
-        if (!target.Equals(Vector3.zero))
+        if (target != null)
         {
-            transform.rotation.SetLookRotation(target);
+            Debug.Log("Distance to target = " + Vector3.Distance(transform.position, target.position));
+            transform.LookAt(target.position);
         }
     }
 
@@ -83,20 +97,18 @@ public class Player : MonoBehaviour
         isAttack = false;
     }
 
-    private Vector3 GetAttackPoint()
+    private Transform GetAttackObject()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        int layerMask = LayerMask.GetMask("Enemy");
         RaycastHit hit;
-        // Проверяем, пересекается ли луч с чем-либо на сцене  
-        if (Physics.Raycast(ray, out hit, layerMask))
+        
+        if (Physics.Raycast(ray, out hit, 5.0f, enemyLayer))
         {
-            // Если пересечение есть, получаем информацию о нём  
             Transform objectHit = hit.transform;
             Debug.Log("Попал в объект: " + objectHit.name);
-            return objectHit.position;
+            return objectHit;
         }
-        return Vector3.zero;
+        return null;
     }
 }

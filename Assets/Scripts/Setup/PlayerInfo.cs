@@ -12,6 +12,7 @@ public class PlayerInfo : ScriptableObject
     public float moveSpeedForward = 3.5f;
     public float moveSpeedBackward = 2.3f;
     public float strafeSpeed = 1f;
+    public float rotateSpeed = 45f;
     public float jumpForce = 5f;
 
     [Header("Animations timing")]
