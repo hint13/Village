@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public SkeletonInfo skeleton;
     public float attackDistance = 1f;
 
-    private Player player;
+    private PlayerController player;
     private Animator animator;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        player = FindFirstObjectByType<Player>();
+        player = FindFirstObjectByType<PlayerController>();
     }
 
     private void Start()

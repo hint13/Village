@@ -374,10 +374,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 265581913788385567}
+      addedObject: {fileID: -8844275019112006415}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8844275019112006415}
+      addedObject: {fileID: 265581913788385567}
   m_SourcePrefab: {fileID: 100100000, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
 --- !u!4 &7442184399502367234 stripped
 Transform:
@@ -389,20 +389,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c0e8ec4be6a4d554881a5c8bb6d0c0cf, type: 3}
   m_PrefabInstance: {fileID: 8516156209441235525}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &265581913788385567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8858051749441068820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9e8f1955d966ea4ea44d2d617708484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeleton: {fileID: 11400000, guid: dcbbff7daf090b04d9fad819cc4e18e6, type: 2}
-  attackDistance: 1.5
 --- !u!136 &-8844275019112006415
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -426,6 +412,20 @@ CapsuleCollider:
   m_Height: 1.815592
   m_Direction: 1
   m_Center: {x: -0.000000045849728, y: 0.8924884, z: -0}
+--- !u!114 &265581913788385567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858051749441068820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9e8f1955d966ea4ea44d2d617708484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeleton: {fileID: 11400000, guid: dcbbff7daf090b04d9fad819cc4e18e6, type: 2}
+  attackDistance: 1.5
 --- !u!1001 &8930947054620425367
 PrefabInstance:
   m_ObjectHideFlags: 0

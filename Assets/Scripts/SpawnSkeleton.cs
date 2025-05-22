@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class SpawnSkeleton : MonoBehaviour
 {
     [Header("Skeletons list")]
-    public List<SkeletonInfo> _skeletons = new();
+    public List<GameObject> _skeletonPrefabs = new();
 
     [Header("Spawn area size")]
     public float spawnAreaWidth = 5f;
@@ -26,8 +26,9 @@ public class SpawnSkeleton : MonoBehaviour
 
     void Start()
     {
-        foreach (SkeletonInfo skeleton in _skeletons)
+        foreach (GameObject prefab in _skeletonPrefabs)
         {
+            SkeletonInfo skeleton = prefab.GetComponent<Enemy>().skeleton;
             unitSpawnIntervals.Add((int)skeleton.spawnInterval);
             availableForSpawn.Add(skeleton.spawnCount);
         }
@@ -62,11 +63,11 @@ public class SpawnSkeleton : MonoBehaviour
         if (time % unitSpawnIntervals[currentUnit] == 0)
         {
             if (availableForSpawn[currentUnit] != 0)
-                StartCoroutine(Spawn(_skeletons[currentUnit]));
+                StartCoroutine(Spawn(_skeletonPrefabs[currentUnit]));
         }
     }
 
-    private IEnumerator Spawn(SkeletonInfo skeleton)
+    private IEnumerator Spawn(GameObject skeleton)
     {
         _isSpawning = true;
         availableForSpawn[currentUnit]--;
@@ -75,11 +76,11 @@ public class SpawnSkeleton : MonoBehaviour
             currentUnit++;
         }
         
-        var s = Instantiate(skeleton.prefab, GetSpawnPoint(), transform.rotation.normalized);
+        var s = Instantiate(skeleton, GetSpawnPoint(), transform.rotation.normalized);
         s.layer = LayerMask.NameToLayer("Enemy");
         skeletons.Add(s);
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1f);
         _isSpawning = false;
     }
 

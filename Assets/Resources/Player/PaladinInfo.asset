@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: PaladinInfo
   m_EditorClassIdentifier: 
   maxHP: 100
-  slashDamage: 25
-  kickDamage: 20
+  slashDamage: 20
+  kickDamage: 15
   moveSpeedForward: 3.5
   moveSpeedBackward: 2.3
-  strafeSpeed: 2
+  strafeSpeed: 1
+  rotateSpeed: 45
   jumpForce: 5
-  slashTime: 1
+  gravity: -30
+  slashTime: 1.4
   kickTime: 1.1
   jumpTime: 0.9
   hitTime: 0.9
