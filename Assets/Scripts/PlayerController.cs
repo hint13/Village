@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
             if (_verticalVelocity > 0)
             {
                 controller.Move(new Vector3(0f, _verticalVelocity, 0f) * Time.deltaTime);
-                animator.SetTrigger("Jump");
             }
         }
     }
@@ -58,25 +57,26 @@ public class PlayerController : MonoBehaviour
         if (!isAttack && controller.isGrounded)
         {
             _verticalVelocity = stat.jumpForce;
+            animator.SetTrigger("Jump");
         }
     }
 
-    private void Attack() 
+    public void Attack(string name)
     {
-        Transform target = null;
-        if (Input.GetMouseButtonDown(0))
-        {
-            target = GetAttackObject();
+        if (isAttack)
+            return;
+        if (name.Equals("Attack"))
             StartCoroutine(SlashAttack());
-        } else if (Input.GetMouseButtonDown(1))
-        {
-            target = GetAttackObject();
+        else if (name.Equals("Kick"))
             StartCoroutine(KickAttack());
-        }
-        if (target != null)
+        else
+            return;
+        
+        Enemy[] targets = GetAttackObjects();
+        if (targets != null)
         {
-            Debug.Log("Distance to target = " + Vector3.Distance(transform.position, target.position));
-            transform.LookAt(target.position);
+            Debug.Log("Distance to target = " + Vector3.Distance(transform.position, targets[0].transform.position));
+            transform.LookAt(targets[0].transform.position);
         }
     }
 
@@ -96,18 +96,14 @@ public class PlayerController : MonoBehaviour
         isAttack = false;
     }
 
-    private Transform GetAttackObject()
+    private Enemy[] GetAttackObjects()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hit;
-        
-        if (Physics.Raycast(ray, out hit, 5.0f, enemyLayer))
-        {
-            Transform objectHit = hit.transform;
-            Debug.Log("Попал в объект: " + objectHit.name);
-            return objectHit;
-        }
+        /** TODO: Дописать получение списка врагов
+         * 1. Определить отклонение сектора атаки от вектора взгляда игрока
+         * 2. Выполнить сферакаст от игрока на расстояние удара
+         * 3. Отсечь всех врагов, не попавших в сектор
+         * 4. Вернуть результат
+         */
         return null;
     }
 }

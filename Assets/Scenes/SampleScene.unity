@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &407298481 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1697513454904937038, guid: 91bf2a11ba4e0f947be5031dff4055c3, type: 3}
-  m_PrefabInstance: {fileID: 3009944255672840340}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &651398280
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +261,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &828194000 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3563691404503861621, guid: 91bf2a11ba4e0f947be5031dff4055c3, type: 3}
+  m_PrefabInstance: {fileID: 3009944255672840340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1172149533
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowTarget: {fileID: 2084390574}
-  LookTarget: {fileID: 407298481}
+  LookTarget: {fileID: 828194000}
   FollowSpeed: 10
 --- !u!1 &1793592285
 GameObject:
@@ -557,6 +557,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3347970482371105232, guid: 91bf2a11ba4e0f947be5031dff4055c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7274551958604533920, guid: 91bf2a11ba4e0f947be5031dff4055c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

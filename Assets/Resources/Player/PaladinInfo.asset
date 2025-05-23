@@ -15,14 +15,14 @@ MonoBehaviour:
   maxHP: 100
   slashDamage: 20
   kickDamage: 15
-  moveSpeedForward: 3.5
-  moveSpeedBackward: 2.3
-  strafeSpeed: 1
-  rotateSpeed: 45
-  jumpForce: 5
+  moveSpeedForward: 5
+  moveSpeedBackward: 3
+  strafeSpeed: 2
+  rotateSpeed: 15
+  jumpForce: 10
   gravity: -30
-  slashTime: 1.4
-  kickTime: 1.1
+  slashTime: 0.8
+  kickTime: 0.7
   jumpTime: 0.9
   hitTime: 0.9
   deadTime: 2.2
