@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8f8103b09bc234bbb755d9cf71ac68, type: 3}
   m_Name: PaladinInfo
   m_EditorClassIdentifier: 
-  maxHP: 300
+  maxHP: 10
   slashDamage: 20
   kickDamage: 15
   moveSpeedForward: 5
