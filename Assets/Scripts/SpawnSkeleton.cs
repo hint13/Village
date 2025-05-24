@@ -41,6 +41,7 @@ public class SpawnSkeleton : MonoBehaviour
             new Vector3(pos.x-spawnAreaWidth, 0.01f, pos.z+spawnAreaHeigh)
         }; 
         skeletons.Clear();
+        StartCoroutine(CheckSkeletons());
     }
 
     private void FixedUpdate()
@@ -49,8 +50,28 @@ public class SpawnSkeleton : MonoBehaviour
             TrySpawn();
     }
 
-    private void Update()
+    private IEnumerator CheckSkeletons()
     {
+        while (!IsAllSkeletonsDead())
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        Debug.Log("You Win! All skeletons is dead.");
+        FindFirstObjectByType<PlayerController>().WinGame();
+    }
+
+    private bool IsAllSkeletonsDead()
+    {
+        if (currentUnit < unitSpawnIntervals.Count)
+            return false;
+        bool isAnyLive = false;
+        foreach (GameObject skeleton in skeletons)
+        {
+            isAnyLive = isAnyLive || !skeleton.GetComponent<Enemy>().IsDead();
+            if (isAnyLive)
+                break;
+        }
+        return !isAnyLive;
     }
 
     private void TrySpawn()

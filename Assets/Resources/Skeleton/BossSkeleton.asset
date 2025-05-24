@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   prefab: {fileID: 8858051749441068820, guid: 623ac4cfba6f91440b6ee8af6313866a, type: 3}
-  HP: 500
+  HP: 300
   Speed: 0.8
   countAttacks: 3
   spawnCount: 1
