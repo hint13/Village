@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
 
     private Vector3 MoveDirection()
     {
-        transform.LookAt(player.transform.position);
+        transform.LookAt(new Vector3(player.transform.position.x, 0f, player.transform.position.z));
         return transform.forward;
     }
 
